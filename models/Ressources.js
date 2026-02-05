@@ -1,29 +1,27 @@
-const {Datatypes} = require('sequelize');
-const sequlize = require('../config/database');
+const {DataTypes} = require('sequelize');
+const sequelize = require('../config/db');
 
-const Ressources = sequlize.define('Ressources', {
+const Ressources = sequelize.define('Ressources', {
     id: {
-        type: Datatypes.INTEGER,        
+        type: DataTypes.INTEGER,        
         primaryKey: true,
         autoIncrement: true
     },  
     title: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     description: {
-        type: Datatypes.TEXT,
+        type: DataTypes.TEXT,
         allowNull: false
     },  
     categorie: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     }, lien : {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false    
     },
 },
-    {
-        timestamps: false
-});
+    );
 module.exports = Ressources;
