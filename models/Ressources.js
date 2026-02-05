@@ -1,7 +1,7 @@
-const {DataTypes} = require('sequelize');
-const sequelize = require('../config/db');
+import { DataTypes } from 'sequelize';
+import db  from '../config/db.js';
 
-const Ressources = sequelize.define('Ressources', {
+const Ressources = db.define('Ressources', {
     id: {
         type: DataTypes.INTEGER,        
         primaryKey: true,
@@ -24,4 +24,4 @@ const Ressources = sequelize.define('Ressources', {
     },
 },
     );
-module.exports = Ressources;
+export default Ressources;

@@ -1,27 +1,33 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-const db = require('./config/db');
-const Users = require('./models/Users');
-const Ressources = require('./models/Ressources');
-
-const bodyParser = require('body-parser');
+import  sync  from './config/db.js';
+import Users from './models/Users.js';
+import Ressources from './models/Ressources.js';
+import db from './config/db.js';
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-db.sync()
-    .then(() => {
-        console.log('Les tables ont été synchronisées avec la base de données.');
-    })
-    .catch(err => {
-        console.error('Erreur lors de la synchronisation des tables :', err);
-    });
+const startServer = async () => {
+    try {
+        await db.sync();
+        console.log('Synchronisation avec la base de données réussie.');
 
-app.listen(port, () => {
-    console.log(`Le server écoute sur le port ${port}`);
-});
+        app.listen(port, () => {
+            console.log(`Serveur démarré sur le port ${port}`);
+        }
+        );
+    } catch (error) {
+        console.error('Erreur lors de la synchronisation avec la base de données :', error);
+    }
+};
+
+startServer();  
