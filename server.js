@@ -7,9 +7,9 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-import  sync  from './config/db.js';
-import Users from './models/Users.js';
-import Ressources from './models/Ressources.js';
+import sync  from './config/db.js';
+import Users from './app/models/Users.js';
+import Ressources from './app/models/Ressources.js';
 import db from './config/db.js';
 
 app.use(cors());
