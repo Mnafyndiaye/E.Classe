@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import  db  from '../../config/db.js';
-import {roles} from '../controllers/roles.js'
+import {ROLES} from '../../config/roles.js'
 
 const Users = db.define('Users', {
     id: {
@@ -22,10 +22,10 @@ const Users = db.define('Users', {
         allowNull: false
     },
     role:{
-        type: DataTypes.ENUM(...roles),
+        type: DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: 'apprenant'
+        defaultValue: ROLES.apprenant
     }
-},
+}
 );
 export default Users;
